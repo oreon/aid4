@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}{{ block.super }}Thanks {% endblock %}
+
+{% block container %}
+
+<div class="container profile-head">
+    {% if message %}
+    <h2> {{message}} </h2>
+    {% else %}
+    <h2>Thank your for sponsoring {{kid.name }}</h2>
+    {% endif %}
+    <a href="">
+ <a href="{% url 'kids:mykids_list'  %}">Go to your sponsored kids page </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load thumbnail %}
+
+{% block title %}{{ block.super }}Profile{% endblock %}
+
+{% block container %}
+
+<div class="container profile-head">
+  <div class="row">
+    <div class="col-sm-10">
+      <h1>{{ kid }}</h1>
+      {% if kid.sponsor is None %}
+      <a href="{% url 'kids:sponsor' kid.id %}" class="btn btn-info">Sponsor</a>
+      {% endif %}
+      
+      {% if kid.sponsor.email == user.email %}
+      <a href="{% url 'kids:unsponsor' kid.id %}" class="btn btn-info">UnSponsor</a>
+      {% endif %}
+    </div>
+    <div class="col-sm-2"><img title="profile picture" 
+      class="img-circle img-responsive" 
+      src="{% thumbnail kid.photo|default:'default_profile.png' 140x140 crop %}">
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
