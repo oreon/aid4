@@ -50,7 +50,14 @@ class Kid(models.Model):
         return int((datetime.now().date() - self.date_of_birth).days / 365.25)
 
 
+
+
 class Sponsorship(models.Model):
+
+    SP_CHOICES = (
+        ('s', 'Sponsored'),
+        ('c', 'Cancelled'),
+    )
 
     sponsor = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE,
@@ -61,9 +68,12 @@ class Sponsorship(models.Model):
                                related_name='sponsorship',)
 
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
 
-class Payments(models.Model):
+    action=models.CharField(max_length=10,
+                            choices=SP_CHOICES, default='s')
+
+class Payment(models.Model):
 
     sponsorship = models.ForeignKey(Sponsorship,
                                on_delete=models.CASCADE,

@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.shortcuts import render, get_object_or_404
-from .models import Kid
+from .models import *
 from django.views.generic import ListView, DetailView
 
 class KidListView(ListView):
@@ -34,6 +34,7 @@ def sponsor(request, kid_id):
     kid = get_object_or_404(Kid, pk=kid_id)
     kid.sponsor = request.user
     kid.save()
+    Sponsorship.objects.create(kid=kid, sponsor= kid.sponsor)
 
     return render(request,
                   'kids/kid/sponsored.html',
@@ -46,6 +47,13 @@ def unsponsor(request, kid_id):
     if(kid.sponsor == request.user):
         kid.sponsor = None
         kid.save()
+        s = Sponsorship.objects.filter(kid=kid, sponsor= request.user, action = Sponsorship.SP_CHOICES[0][0])\
+            .order_by('-created')\
+            .first()
+
+        Sponsorship.objects.filter(id = s.id)\
+            .update(action=Sponsorship.SP_CHOICES[1][0])
+        #s.update()
         message = "The kid has been unsponsored"
     else :
         message = 'You do not have the right to do this'
