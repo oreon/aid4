@@ -33,6 +33,7 @@ class Kid(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    
 
     objects = models.Manager() # The default manager.
     available = AvailableManager() # Our custom manager.
@@ -69,6 +70,7 @@ class Sponsorship(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, null=True)
+    ended = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     action=models.CharField(max_length=10,
                             choices=SP_CHOICES, default='s')

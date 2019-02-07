@@ -23,7 +23,7 @@ class KidAdmin(admin.ModelAdmin):
 
 @admin.register(Sponsorship)
 class SponsorshipAdmin(admin.ModelAdmin):   
-    list_display = ( 'created', 'action', 'sponsor', 'kid')
+    list_display = ( 'created', 'action', 'sponsor', 'kid', 'ended')
     list_filter = ( 'created', 'action' )
     actions = [export_to_csv]
     pass 

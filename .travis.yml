@@ -4,7 +4,7 @@ python:
 install:
   - pip install -r requirements.txt
   - cd src
-  #- cp settings/local.sample.env settings/local.env
+  -cp myhelath/settings/local.sample.env myhelath/settings/local.env
   - python manage.py migrate
 script:
   - python manage.py test profiles
