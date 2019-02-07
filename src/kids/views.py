@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from django.views.generic import ListView, DetailView
 
@@ -58,9 +58,10 @@ def unsponsor(request, kid_id):
     else :
         message = 'You do not have the right to do this'
 
-    return render(request,
-                  'kids/kid/sponsored.html',
-                  {'kid': kid, 'message': message})   
+    return redirect(reverse('kids:mykids_list'))
+    # return render(request,
+    #               'kids/kid/sponsored.html',
+    #               {'kid': kid, 'message': message})   
 
 def kid_detail(request, pk):
     kid = get_object_or_404(Kid, pk=pk)
