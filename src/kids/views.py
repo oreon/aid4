@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import *
 from django.views.generic import ListView, DetailView
-
+from django.contrib import messages
 
 
 class KidListView(ListView):
@@ -38,6 +38,11 @@ def sponsor(request, kid_id):
     kid.save()
     Sponsorship.objects.create(kid=kid, sponsor= kid.sponsor)
 
+    messages.success(
+            request,
+            "The child has been sponsored",
+        )
+
     return render(request,
                   'kids/kid/sponsored.html',
                   {'kid': kid,})   
@@ -56,11 +61,15 @@ def unsponsor(request, kid_id):
         Sponsorship.objects.filter(id = s.id)\
             .update(action=Sponsorship.SP_CHOICES[1][0])
         #s.update()
-        message = "The kid has been unsponsored"
+        messages.success(request,"The kid has been unsponsored")
     else :
-        message = 'You do not have the right to do this'
+        messages.error(request,"You do not have this child in your sponsored list")
+    
 
-    return redirect(reverse('kids:mykids_list', {'message': message}))
+    messages.success(request,message,)
+       
+
+    return redirect(reverse('kids:mykids_list'),)
     # return render(request,
     #               'kids/kid/sponsored.html',
     #               {'kid': kid, 'message': message})   
