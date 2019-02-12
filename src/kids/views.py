@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from .models import *
 from django.views.generic import ListView, DetailView
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 
 class KidListView(ListView):
@@ -33,7 +34,20 @@ class KidDetailView(DetailView):
 
 def sponsor(request, kid_id):
 
+    kidUrl = reverse('kids:kid_detail', args=(kid_id,))
+    print(kidUrl)
+
+    if( request.user.is_anonymous):
+        return redirect( reverse('accounts:login') + '?next='+  kidUrl)
+
     kid = get_object_or_404(Kid, pk=kid_id)
+    if(kid.sponsor): 
+        messages.error(
+            request,
+            "This child is not available to be sponsored",
+        )
+        return redirect(kidUrl )
+
     kid.sponsor = request.user
     kid.save()
     Sponsorship.objects.create(kid=kid, sponsor= kid.sponsor)

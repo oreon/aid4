@@ -16,7 +16,7 @@
       <a href="{% url 'kids:sponsor' kid.id %}" class="btn btn-info">Sponsor</a>
       {% endif %}
       
-      {% if kid.sponsor.email == user.email %}
+      {% if user.is_authenticated and kid.sponsor.email == user.email %}
       <a href="{% url 'kids:unsponsor' kid.id %}" class="btn btn-info">UnSponsor</a>
       {% endif %}
 
