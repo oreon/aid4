@@ -26,7 +26,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Must mention ALLOWED_HOSTS in production!
- ALLOWED_HOSTS = ["localhost",'aid4.classroomapp.in']
+ALLOWED_HOSTS = ["localhost",'aid4.classroomapp.in']
 
 # Cache the templates in memory for speed-up
 loaders = [
