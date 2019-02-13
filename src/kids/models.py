@@ -27,7 +27,7 @@ class Kid(models.Model):
                             choices=GENDER_CHOICES, blank=True, null=True)
     city=models.CharField(max_length=250,blank=True, null=True)
     photo = models.ImageField(
-        "Profile picture", upload_to="profile_pics/%Y-%m-%d/", null=True, blank=True
+        "Kid picture", upload_to="kid_pics/%Y-%m-%d/", null=True, blank=True
     )
     description = models.TextField(blank=True, null=True)
 
