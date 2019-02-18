@@ -1,14 +1,14 @@
 from django.contrib import admin
 from .models import *
 from django.utils.html import format_html
-from myhealth.utils import export_to_csv
+from myhealth.utils import export_to_csv, CreatorAdmin
 
 
 # Register your models here.
 @admin.register(Kid)
-class KidAdmin(admin.ModelAdmin):
+class KidAdmin(CreatorAdmin):
     list_display = [ 'name', 'date_of_birth', 'gender' , 'sponsor', 'age', 'updated', 'image_tag']
-    readonly_fields = ['image_tag', 'age']
+    readonly_fields = ['image_tag', 'age', 'sponsor', 'creator']
     search_fields = ['name', 'city', 'sponsor__email']
     list_filter = ('gender', 'created', )
     #list_filter = ( 'created',  'user')

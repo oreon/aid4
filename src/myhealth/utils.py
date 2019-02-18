@@ -2,6 +2,12 @@
 import csv
 import datetime
 from django.http import HttpResponse
+from django.contrib import admin
+
+class CreatorAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        obj.creator = request.user
+        super(CreatorAdmin, self).save_model(request, obj, form, change)
 
 '''
     Function to export data to csv from admin

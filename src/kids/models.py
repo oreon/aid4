@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.conf import settings
 
+
 class AvailableManager(models.Manager):
     def get_queryset(self):
         return super(AvailableManager,
@@ -17,6 +18,11 @@ GENDER_CHOICES = (
     )
 
 class Kid(models.Model):
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE,
+                               related_name='kids_kid',
+                               blank=True, null = True)
+
     sponsor = models.ForeignKey(settings.AUTH_USER_MODEL,
                                on_delete=models.CASCADE,
                                related_name='kid',
