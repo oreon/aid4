@@ -50,7 +50,7 @@
           </a>
           <ul class="nav navbar-nav">
           <li {% if active_link == "kids" %}class="active"{% endif %}><a href="{% url 'kids:kid_list' %}">Kids</a></li>
-          {% if request.user.is_authenticated %}
+          {% if user.is_authenticated %}
           <li {% if active_link == "mykids" %}class="active"{% endif %}><a href="{% url 'kids:mykids_list' %}">My Kids</a></li>
           {% endif %}
         </ul>
