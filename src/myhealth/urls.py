@@ -15,8 +15,9 @@ urlpatterns = [
     path("", views.HomePage.as_view(), name="home"),
     path("about/", views.AboutPage.as_view(), name="about"),
     path("users/", include(profiles.urls)),
-     path("kids/", include(kids.urls)),
+    path("kids/", include(kids.urls)),
     path("admin/", admin.site.urls),
+    path('payment/', include('payment.urls', namespace='payment')),
     path("", include(accounts.urls)),
 ]
 

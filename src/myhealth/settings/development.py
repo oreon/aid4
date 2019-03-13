@@ -36,6 +36,20 @@ THUMBNAIL_DEBUG = True
 # Allow internal IPs for debugging
 INTERNAL_IPS = ["127.0.0.1", "0.0.0.1"]
 
+# Braintree settings
+BRAINTREE_MERCHANT_ID = '65pmbxmsmwsc8h8m'  # Merchant ID
+BRAINTREE_PUBLIC_KEY = 'v292kcjbgdpq2pgj'   # Public Key
+BRAINTREE_PRIVATE_KEY = 'df293b74c2b2d1215f0b46d530abdd95'  # Private key
+
+from braintree import Configuration, Environment
+
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
+
 # Log everything to the logs directory at the top
 LOGFILE_ROOT = BASE_DIR.parent / "logs"
 

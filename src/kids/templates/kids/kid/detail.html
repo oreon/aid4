@@ -20,6 +20,10 @@
       <a href="{% url 'kids:unsponsor' kid.id %}" class="btn btn-info">UnSponsor</a>
       {% endif %}
 
+      {% if user.is_authenticated and kid.sponsor.email == user.email %}
+      <a href="{% url 'payment:process' kid.id %}" class="btn btn-success">Donate Now</a>
+      {% endif %}
+
       <p>
         {{ kid.description }}
       </p>

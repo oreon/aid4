@@ -75,7 +75,8 @@ INSTALLED_APPS = (
     "easy_thumbnails",
     "profiles",
     "accounts",
-    "kids"
+    "kids",
+    "payment.apps.PaymentConfig"
 )
 
 MIDDLEWARE = [
