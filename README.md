@@ -1,14 +1,18 @@
 
 
-# myhealth
+# Aid4Kids - a generic django based platform for connecting sponsors with sponsored children 
 
-myhealth is a _short description_. It is built with [Python][0] using the [Django Web Framework][1].
+. It is built with [Python][3.7] using the [Django Web Framework][1], can be used by any NGO for helping the children find sponsors. 
 
-This project has the following basic apps:
+This project has the following features:
 
-* App1 (short desc)
-* App2 (short desc)
-* App3 (short desc)
+* Sponsors can register themselves and search for students they want to sponsor
+* Manage their profile and unsponsor a sponsored child.
+* Admins can see the sponsorships through django admin interface
+* Reports for admins are in progress
+
+TODOS
+* Automated Payment integration
 
 ## Installation
 
